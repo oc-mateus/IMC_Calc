@@ -40,8 +40,8 @@ Siga os passos abaixo para executar o projeto em sua máquina local:
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/calculadora-imc.git
-cd calculadora-imc
+git clone https://github.com/oc-mateus/IMC_Calc.git
+cd IMC_Calc
 ```
 
 2. Instale as dependências:
