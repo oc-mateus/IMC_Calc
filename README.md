@@ -129,7 +129,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 Mateus C. - [@oc-mateus](https://github.com/oc-mateus) - mateusnegocios.com@gmail.com
 
-Link do Projeto: [https://github.com/oc-mateus/IMC](https://github.com/oc-mateus/IMC)
+Link do Projeto: [https://github.com/oc-mateus/IMC_Calc](https://github.com/oc-mateus/IMC_Calc)
 
 ## 🙌 Agradecimentos
 
