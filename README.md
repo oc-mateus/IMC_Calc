@@ -56,7 +56,7 @@ npm run dev
 
 4. Abra o navegador e acesse:
 ```
-http://localhost:5173
+http://localhost:3001
 ```
 
 ### Build para Produção
