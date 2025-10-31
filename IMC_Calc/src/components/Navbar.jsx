@@ -1,13 +1,25 @@
+import React, { useContext } from "react"; // Adicionado o useContext
 import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "../../contexts/authcontext"; // Importado o AuthContext
 
 function Navbar() {
   const location = useLocation();
+  const { user, logout } = useContext(AuthContext); // Hook para pegar o usuário e a função de logout
+
+  // Função para pegar o estilo do link, do seu código original
+  const getLinkClass = (path) => {
+    return `px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+      location.pathname === path
+        ? "bg-white text-blue-500" // Seu estilo de link ativo
+        : "text-white hover:bg-blue-400" // Seu estilo de link inativo
+    }`;
+  };
 
   return (
     <nav className="bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+          {/* Logo (Seu design original) */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="bg-white p-2 rounded-lg">
               <svg
@@ -28,28 +40,50 @@ function Navbar() {
             <span className="text-white font-bold text-xl">Saúde Total</span>
           </Link>
 
-          {/* Menu */}
-          <div className="flex space-x-8">
-            <Link
-              to="/"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
-                location.pathname === "/"
-                  ? "bg-white text-blue-500"
-                  : "text-white hover:bg-blue-400"
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              to="/imc"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
-                location.pathname === "/imc"
-                  ? "bg-white text-blue-500"
-                  : "text-white hover:bg-blue-400"
-              }`}
-            >
-              IMC
-            </Link>
+          {/* Menu (Seu design + lógica) */}
+          <div className="flex items-center space-x-3">
+            <div className="hidden sm:flex items-center space-x-4">
+              <Link to="/" className={getLinkClass("/")}>
+                Home
+              </Link>
+              <Link to="/imc" className={getLinkClass("/imc")}>
+                IMC
+              </Link>
+            </div>
+
+            {/* --- LÓGICA DE AUTENTICAÇÃO ADICIONADA AQUI --- */}
+            {user ? (
+              // Se o usuário ESTIVER logado
+              <>
+                <span className="text-white hidden sm:block font-medium">
+                  Olá, {user.nome}!
+                </span>
+                <button
+                  onClick={logout}
+                  className="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 transition-colors duration-300 text-sm"
+                >
+                  Sair
+                </button>
+              </>
+            ) : (
+              // Se o usuário NÃO ESTIVER logado
+              <>
+                <Link
+                  to="/login"
+                  className="text-white hover:bg-blue-400 px-4 py-2 rounded-lg font-medium transition-colors duration-300 text-sm"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  // Botão de cadastro com mais destaque, usando seu estilo de "link ativo"
+                  className="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-all duration-300 text-sm shadow"
+                >
+                  Cadastrar
+                </Link>
+              </>
+            )}
+            {/* --- FIM DA LÓGICA DE AUTENTICAÇÃO --- */}
           </div>
         </div>
       </div>
